@@ -20,12 +20,11 @@ def pars(request: str) -> dict:
     headers = []
 
     for ind in range(1, len(request_lines)):
-        if request_lines[ind]:
-            line_list = request_lines[ind].split(': ')
-            headers.append([line_list[0], line_list[1]])
-            request_dict['headers'] = headers
-        else:
+        if not request_lines[ind]:
             request_dict['body'] = '\n'.join(request_lines[ind + 1:])
             return request_dict
+        line_list = request_lines[ind].split(': ')
+        headers.append([line_list[0], line_list[1]])
+        request_dict['headers'] = headers
 
     return request_dict
