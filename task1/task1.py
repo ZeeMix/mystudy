@@ -6,25 +6,27 @@ def pars(request: str) -> dict:
 
     start_values = request_lines[0].split()
 
-    full_path = start_values[1].split('?') if '?' in start_values[1] else [start_values[1], '']
+    full_path = (
+        start_values[1].split("?") if "?" in start_values[1] else [start_values[1], ""]
+    )
 
-    request_dict['method'] = start_values[0]
-    request_dict['path'] = full_path[0]
+    request_dict["method"] = start_values[0]
+    request_dict["path"] = full_path[0]
 
-    request_dict['raw_path'] = request_dict['path'].encode()
+    request_dict["raw_path"] = request_dict["path"].encode()
 
-    request_dict['type'], request_dict['http_version'] = start_values[2].split('/')
+    request_dict["type"], request_dict["http_version"] = start_values[2].split("/")
 
-    request_dict['query_string'] = full_path[1].encode()
+    request_dict["query_string"] = full_path[1].encode()
 
     headers = []
 
     for ind in range(1, len(request_lines)):
         if not request_lines[ind]:
-            request_dict['body'] = '\n'.join(request_lines[ind + 1:])
+            request_dict["body"] = "\n".join(request_lines[ind + 1 :])
             return request_dict
-        line_list = request_lines[ind].split(': ')
+        line_list = request_lines[ind].split(": ")
         headers.append([line_list[0], line_list[1]])
-        request_dict['headers'] = headers
+        request_dict["headers"] = headers
 
     return request_dict
