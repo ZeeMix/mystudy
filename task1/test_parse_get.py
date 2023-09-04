@@ -2,7 +2,7 @@ from task1 import pars
 
 
 def test1_good_get():
-    with open("tests/test1.txt", "r", encoding="utf-8") as http_text:
+    with open("task1/tests/test1.txt", "r", encoding="utf-8") as http_text:
         http_request = http_text.read()
         assert pars(http_request) == {
             "type": "HTTP",
@@ -22,7 +22,7 @@ def test1_good_get():
 
 
 def test2_good_post():
-    with open("tests/test2.txt", "r", encoding="utf-8") as http_text:
+    with open("task1/tests/test2.txt", "r", encoding="utf-8") as http_text:
         http_request = http_text.read()
         assert pars(http_request) == {
             "type": "HTTP",
@@ -45,7 +45,7 @@ def test2_good_post():
 
 
 def test3_good_post_longbody():
-    with open("tests/test3.txt", "r", encoding="utf-8") as http_text:
+    with open("task1/tests/test3.txt", "r", encoding="utf-8") as http_text:
         http_request = http_text.read()
         assert pars(http_request) == {
             "type": "HTTP",
@@ -68,7 +68,7 @@ def test3_good_post_longbody():
 
 
 def test4_query_string():
-    with open("tests/test4.txt", "r", encoding="utf-8") as http_text:
+    with open("task1/tests/test4.txt", "r", encoding="utf-8") as http_text:
         http_request = http_text.read()
         assert pars(http_request) == {
             "type": "HTTP",
